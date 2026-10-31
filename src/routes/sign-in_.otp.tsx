@@ -7,6 +7,7 @@ import {
 } from '@tanstack/react-router';
 import { useMutation } from '@tanstack/react-query';
 import { authClient } from '~/lib/auth-client';
+import { AuthFrame } from '~/components/auth-frame';
 import { Button } from '~/components/ui/button';
 import {
   Card,
@@ -29,7 +30,7 @@ export const Route = createFileRoute('/sign-in_/otp')({
   beforeLoad: ({ search }) => {
     if (!search.email) throw redirect({ to: '/sign-in' });
   },
-  head: () => seo({ title: 'Check your email', noindex: true }),
+  head: () => seo({ title: 'Check your email | Bloom Bakery', noindex: true }),
   component: EmailOtpPage
 });
 
@@ -57,12 +58,12 @@ function EmailOtpPage() {
   });
 
   return (
-    <div className='flex min-h-svh items-center justify-center p-4'>
+    <AuthFrame>
       <Card className='w-full max-w-sm'>
         <CardHeader>
           <CardTitle>Check your email</CardTitle>
           <CardDescription>
-            Enter the six-digit code we sent to {email}.
+            If {email} is on the owner list, a six-digit code is on its way. Enter it here.
           </CardDescription>
         </CardHeader>
         <CardContent className='flex flex-col gap-6'>
@@ -127,6 +128,6 @@ function EmailOtpPage() {
           </div>
         </CardContent>
       </Card>
-    </div>
+    </AuthFrame>
   );
 }

@@ -1,53 +1,29 @@
-import {
-  ErrorComponent,
-  Link,
-  rootRouteId,
-  useMatch,
-  useRouter,
-} from '@tanstack/react-router'
-import type { ErrorComponentProps } from '@tanstack/react-router'
+import { Link, useRouter } from '@tanstack/react-router';
+import type { ErrorComponentProps } from '@tanstack/react-router';
 
 export function DefaultCatchBoundary({ error }: ErrorComponentProps) {
-  const router = useRouter()
-  const isRoot = useMatch({
-    strict: false,
-    select: (state) => state.id === rootRouteId,
-  })
+  const router = useRouter();
 
-  console.error(error)
+  console.error(error);
 
   return (
-    <div className="min-w-0 flex-1 p-4 flex flex-col items-center justify-center gap-6">
-      <ErrorComponent error={error} />
-      <div className="flex gap-2 items-center flex-wrap">
+    <div className='mx-auto flex min-h-[70svh] max-w-xl flex-col items-center justify-center px-5 py-16 text-center'>
+      <h1 className='display text-6xl'>Something burned.</h1>
+      <p className='mt-4 text-lg'>
+        That page didn’t load the way it should have. Please try again.
+      </p>
+      <div className='mt-7 flex flex-wrap justify-center gap-3'>
         <button
-          onClick={() => {
-            router.invalidate()
-          }}
-          className={`px-2 py-1 bg-gray-600 dark:bg-gray-700 rounded-sm text-white uppercase font-extrabold`}
+          type='button'
+          className='btn btn-primary'
+          onClick={() => router.invalidate()}
         >
-          Try Again
+          Try again
         </button>
-        {isRoot ? (
-          <Link
-            to="/"
-            className={`px-2 py-1 bg-gray-600 dark:bg-gray-700 rounded-sm text-white uppercase font-extrabold`}
-          >
-            Home
-          </Link>
-        ) : (
-          <Link
-            to="/"
-            className={`px-2 py-1 bg-gray-600 dark:bg-gray-700 rounded-sm text-white uppercase font-extrabold`}
-            onClick={(e) => {
-              e.preventDefault()
-              window.history.back()
-            }}
-          >
-            Go Back
-          </Link>
-        )}
+        <Link to='/' className='btn btn-ghost'>
+          Back to the bakery
+        </Link>
       </div>
     </div>
-  )
+  );
 }

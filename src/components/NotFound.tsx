@@ -1,25 +1,25 @@
-import { Link } from '@tanstack/react-router'
+import type { ReactNode } from 'react';
+import { Link } from '@tanstack/react-router';
+import { Art } from '~/components/art';
 
-export function NotFound({ children }: { children?: any }) {
+export function NotFound({ children }: { children?: ReactNode }) {
   return (
-    <div className="space-y-2 p-2">
-      <div className="text-gray-600 dark:text-gray-400">
-        {children || <p>The page you are looking for does not exist.</p>}
+    <div className='mx-auto flex min-h-[70svh] max-w-xl flex-col items-center justify-center px-5 py-16 text-center'>
+      <Art name='cookie' className='w-36' />
+      <h1 className='display mt-6 text-6xl'>All crumbs here.</h1>
+      <div className='mt-4 text-lg'>
+        {children ?? (
+          <p>We couldn’t find that page. It may have moved, or sold out.</p>
+        )}
       </div>
-      <p className="flex items-center gap-2 flex-wrap">
-        <button
-          onClick={() => window.history.back()}
-          className="bg-emerald-500 text-white px-2 py-1 rounded-sm uppercase font-black text-sm"
-        >
-          Go back
-        </button>
-        <Link
-          to="/"
-          className="bg-cyan-600 text-white px-2 py-1 rounded-sm uppercase font-black text-sm"
-        >
-          Start Over
+      <div className='mt-7 flex flex-wrap justify-center gap-3'>
+        <Link to='/' className='btn btn-primary'>
+          Back to the bakery
         </Link>
-      </p>
+        <Link to='/menu' className='btn btn-ghost'>
+          See the menu
+        </Link>
+      </div>
     </div>
-  )
+  );
 }

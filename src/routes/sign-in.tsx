@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 import { useMutation } from '@tanstack/react-query';
 import { ChevronDownIcon } from 'lucide-react';
 import { authClient } from '~/lib/auth-client';
+import { AuthFrame } from '~/components/auth-frame';
 import { Button } from '~/components/ui/button';
 import {
   Card,
@@ -22,7 +23,7 @@ import { Separator } from '~/components/ui/separator';
 import { seo } from '~/utils/seo';
 
 export const Route = createFileRoute('/sign-in')({
-  head: () => seo({ title: 'Sign in', noindex: true }),
+  head: () => seo({ title: 'Owner sign-in | Bloom Bakery', noindex: true }),
   component: SignInPage
 });
 
@@ -56,12 +57,12 @@ function SignInPage() {
   });
 
   return (
-    <div className='flex min-h-svh items-center justify-center p-4'>
+    <AuthFrame>
       <Card className='w-full max-w-sm'>
         <CardHeader>
-          <CardTitle>Sign in</CardTitle>
+          <CardTitle>Owner sign-in</CardTitle>
           <CardDescription>
-            Enter your email and we’ll send you a one-time sign-in code.
+            Enter the email on the owner list, and we’ll send you a one-time sign-in code.
           </CardDescription>
         </CardHeader>
         <CardContent className='flex flex-col gap-6'>
@@ -167,14 +168,8 @@ function SignInPage() {
               </form>
             </CollapsibleContent>
           </Collapsible>
-          <p className='text-center text-sm text-muted-foreground'>
-            Don’t have an account?{' '}
-            <Link to='/sign-up' className='underline'>
-              Sign up
-            </Link>
-          </p>
         </CardContent>
       </Card>
-    </div>
+    </AuthFrame>
   );
 }

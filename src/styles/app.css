@@ -1,51 +1,31 @@
 @import 'tailwindcss' source('../');
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
-@import '@fontsource-variable/outfit';
+@import '@fontsource-variable/fraunces/full.css';
+@import '@fontsource-variable/fraunces/full-italic.css';
+@import '@fontsource-variable/instrument-sans/wght.css';
+@import '@fontsource/dm-mono/400.css';
+@import '@fontsource/dm-mono/500.css';
 
 @custom-variant dark (&:is(.dark *));
 
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
-  }
-}
-
-@layer base {
-  html {
-    color-scheme: light dark;
-  }
-
-  * {
-    @apply border-gray-200 dark:border-gray-800;
-  }
-
-  html,
-  body {
-    @apply text-gray-900 bg-gray-50 dark:bg-gray-950 dark:text-gray-200;
-  }
-
-  .using-mouse * {
-    outline: none !important;
-  }
-}
+/*
+ * Colors come from `business.config.ts`. The root route writes them to :root as
+ * --paper, --ink, --crust, and so on, and everything below is built from them.
+ */
 
 @theme inline {
-  --font-heading: var(--font-sans);
-  --font-sans: 'Outfit Variable', sans-serif;
+  --font-heading: 'Fraunces Variable', Georgia, serif;
+  --font-display: 'Fraunces Variable', Georgia, serif;
+  --font-sans: 'Instrument Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, monospace;
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
+  --color-crust: var(--crust);
+  --color-butter: var(--butter);
+  --color-rye: var(--rye);
+  --color-sage: var(--sage);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -87,70 +67,219 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: var(--color-sky-700);
-  --primary-foreground: var(--color-white);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: var(--color-sky-700);
-  --sidebar-primary-foreground: var(--color-white);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: color-mix(in oklab, var(--paper) 55%, white);
+  --card-foreground: var(--ink);
+  --popover: color-mix(in oklab, var(--paper) 40%, white);
+  --popover-foreground: var(--ink);
+  --primary: var(--crust);
+  --primary-foreground: #fffaf0;
+  --secondary: var(--paper-deep);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper-deep);
+  --muted-foreground: color-mix(in oklab, var(--ink) 70%, var(--paper));
+  --accent: var(--paper-deep);
+  --accent-foreground: var(--ink);
+  --destructive: #a12a18;
+  --border: color-mix(in oklab, var(--ink) 20%, var(--paper));
+  --input: color-mix(in oklab, var(--ink) 34%, var(--paper));
+  --ring: var(--crust);
+  --chart-1: var(--crust);
+  --chart-2: var(--butter);
+  --chart-3: var(--rye);
+  --chart-4: var(--sage);
+  --chart-5: var(--ink);
+  --radius: 0.25rem;
+  --sidebar: var(--paper);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--crust);
+  --sidebar-primary-foreground: #fffaf0;
+  --sidebar-accent: var(--paper-deep);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--crust);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .12 0 0 0 0 .06 0 0 0 .13 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: var(--color-sky-400);
-  --primary-foreground: var(--color-sky-950);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: var(--color-sky-400);
-  --sidebar-primary-foreground: var(--color-sky-950);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5.5rem;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image: var(--grain);
+    overflow-x: clip;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-variation-settings: 'SOFT' 60, 'WONK' 0;
+    text-wrap: balance;
+  }
+  /* Fieldsets default to min-content, which lets a scrolling row widen a page. */
+  fieldset {
+    min-width: 0;
+  }
+  ::selection {
+    background: var(--butter);
+    color: var(--ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--crust);
+    outline-offset: 2px;
+  }
+  .using-mouse * {
+    outline: none !important;
+  }
+}
+
+@layer components {
+  /* Big, soft, slightly wonky display type: the voice of the brand. */
+  .display {
+    font-family: var(--font-display);
+    font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 0.94;
+  }
+  /* The small typewriter label used for dates, prices, and section tags. */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+  /* The oven-door arch, used to frame the artwork. */
+  .arch {
+    border-radius: 999px 999px 0.25rem 0.25rem;
+    overflow: hidden;
+  }
+  .rule-double {
+    border-top: 3px double currentColor;
+  }
+  .leader {
+    background-image: radial-gradient(circle, currentColor 1px, transparent 1.4px);
+    background-position: left calc(100% - 0.28em);
+    background-repeat: repeat-x;
+    background-size: 7px 7px;
+    opacity: 0.45;
+  }
+  .btn {
+    align-items: center;
+    border: 2px solid var(--ink);
+    display: inline-flex;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    gap: 0.6rem;
+    justify-content: center;
+    line-height: 1.2;
+    min-height: 3.25rem;
+    padding: 0.8rem 1.4rem;
+    text-align: center;
+    transition:
+      background-color 160ms,
+      color 160ms,
+      transform 160ms,
+      box-shadow 160ms;
+  }
+  .btn:hover {
+    box-shadow: 4px 4px 0 var(--ink);
+    transform: translate(-2px, -2px);
+  }
+  .btn:active {
+    box-shadow: none;
+    transform: none;
+  }
+  .btn:disabled {
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.55;
+    transform: none;
+  }
+  .btn-primary {
+    background: var(--crust);
+    color: #fffaf0;
+  }
+  .btn-ink {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+  }
+  .btn-ghost:hover {
+    background: var(--paper);
+  }
+  .field-input {
+    appearance: none;
+    background: color-mix(in oklab, var(--paper) 45%, white);
+    border: 1.5px solid var(--ink);
+    border-radius: 0;
+    color: var(--ink);
+    display: block;
+    font-size: 1rem;
+    min-height: 3.1rem;
+    padding: 0.7rem 0.85rem;
+    width: 100%;
+  }
+  .field-input:focus {
+    box-shadow: 3px 3px 0 var(--crust);
+    outline: none;
+  }
+  .field-input[aria-invalid='true'] {
+    border-color: var(--destructive);
+    box-shadow: 3px 3px 0 var(--destructive);
+  }
+  /* Hides the row of scroll marks on the home page's sideways shelf. */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Off screen and away from assistive tech: only form-filling bots touch it. */
+.honeypot {
+  height: 1px;
+  left: -9999px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+
+.reveal-rise {
+  animation: rise 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-rise {
+    animation: none;
+  }
 }

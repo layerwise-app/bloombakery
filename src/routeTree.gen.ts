@@ -8,233 +8,607 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root';
-import { Route as IndexRouteImport } from './routes/index';
-import { Route as DashboardRouteImport } from './routes/dashboard';
-import { Route as ForgotPasswordRouteImport } from './routes/forgot-password';
-import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt';
-import { Route as SignInRouteImport } from './routes/sign-in';
-import { Route as SignUpRouteImport } from './routes/sign-up';
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml';
-import { Route as SignInOtpRouteImport } from './routes/sign-in_.otp';
-import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$';
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as SiteRouteImport } from './routes/_site'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as DemoRouteImport } from './routes/demo'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as NoAccessRouteImport } from './routes/no-access'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as SignInRouteImport } from './routes/sign-in'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SiteIndexRouteImport } from './routes/_site/index'
+import { Route as SiteMenuRouteImport } from './routes/_site/menu'
+import { Route as SiteVisitRouteImport } from './routes/_site/visit'
+import { Route as SiteWeekendBoxRouteImport } from './routes/_site/weekend-box'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
+import { Route as DashboardMenuRouteImport } from './routes/dashboard/menu'
+import { Route as DashboardMessagesRouteImport } from './routes/dashboard/messages'
+import { Route as DashboardReservationsRouteImport } from './routes/dashboard/reservations'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settings'
+import { Route as DemoIndexRouteImport } from './routes/demo/index'
+import { Route as DemoMenuRouteImport } from './routes/demo/menu'
+import { Route as DemoMessagesRouteImport } from './routes/demo/messages'
+import { Route as DemoReservationsRouteImport } from './routes/demo/reservations'
+import { Route as DemoSettingsRouteImport } from './routes/demo/settings'
+import { Route as MediaSplatRouteImport } from './routes/media/$'
+import { Route as SignInOtpRouteImport } from './routes/sign-in_.otp'
+import { Route as SiteReservationTokenRouteImport } from './routes/_site/reservation/$token'
+import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport
-} as any);
+const SiteRoute = SiteRouteImport.update({
+  id: '/_site',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
-  getParentRoute: () => rootRouteImport
-} as any);
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
   id: '/forgot-password',
   path: '/forgot-password',
-  getParentRoute: () => rootRouteImport
-} as any);
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NoAccessRoute = NoAccessRouteImport.update({
+  id: '/no-access',
+  path: '/no-access',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   id: '/robots.txt',
   path: '/robots.txt',
-  getParentRoute: () => rootRouteImport
-} as any);
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SignInRoute = SignInRouteImport.update({
   id: '/sign-in',
   path: '/sign-in',
-  getParentRoute: () => rootRouteImport
-} as any);
-const SignUpRoute = SignUpRouteImport.update({
-  id: '/sign-up',
-  path: '/sign-up',
-  getParentRoute: () => rootRouteImport
-} as any);
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport
-} as any);
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SiteIndexRoute = SiteIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteMenuRoute = SiteMenuRouteImport.update({
+  id: '/menu',
+  path: '/menu',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteVisitRoute = SiteVisitRouteImport.update({
+  id: '/visit',
+  path: '/visit',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteWeekendBoxRoute = SiteWeekendBoxRouteImport.update({
+  id: '/weekend-box',
+  path: '/weekend-box',
+  getParentRoute: () => SiteRoute,
+} as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardMenuRoute = DashboardMenuRouteImport.update({
+  id: '/menu',
+  path: '/menu',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardMessagesRoute = DashboardMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardReservationsRoute = DashboardReservationsRouteImport.update({
+  id: '/reservations',
+  path: '/reservations',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DemoIndexRoute = DemoIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DemoRoute,
+} as any)
+const DemoMenuRoute = DemoMenuRouteImport.update({
+  id: '/menu',
+  path: '/menu',
+  getParentRoute: () => DemoRoute,
+} as any)
+const DemoMessagesRoute = DemoMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => DemoRoute,
+} as any)
+const DemoReservationsRoute = DemoReservationsRouteImport.update({
+  id: '/reservations',
+  path: '/reservations',
+  getParentRoute: () => DemoRoute,
+} as any)
+const DemoSettingsRoute = DemoSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DemoRoute,
+} as any)
+const MediaSplatRoute = MediaSplatRouteImport.update({
+  id: '/media/$',
+  path: '/media/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SignInOtpRoute = SignInOtpRouteImport.update({
   id: '/sign-in_/otp',
   path: '/sign-in/otp',
-  getParentRoute: () => rootRouteImport
-} as any);
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SiteReservationTokenRoute = SiteReservationTokenRouteImport.update({
+  id: '/reservation/$token',
+  path: '/reservation/$token',
+  getParentRoute: () => SiteRoute,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
-  getParentRoute: () => rootRouteImport
-} as any);
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute;
-  '/dashboard': typeof DashboardRoute;
-  '/forgot-password': typeof ForgotPasswordRoute;
-  '/robots.txt': typeof RobotsDottxtRoute;
-  '/sign-in': typeof SignInRoute;
-  '/sign-up': typeof SignUpRoute;
-  '/sitemap.xml': typeof SitemapDotxmlRoute;
-  '/sign-in/otp': typeof SignInOtpRoute;
-  '/api/auth/$': typeof ApiAuthSplatRoute;
+  '/': typeof SiteIndexRoute
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/demo': typeof DemoRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/no-access': typeof NoAccessRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sign-in': typeof SignInRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/menu': typeof SiteMenuRoute
+  '/visit': typeof SiteVisitRoute
+  '/weekend-box': typeof SiteWeekendBoxRoute
+  '/dashboard/menu': typeof DashboardMenuRoute
+  '/dashboard/messages': typeof DashboardMessagesRoute
+  '/dashboard/reservations': typeof DashboardReservationsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/demo/menu': typeof DemoMenuRoute
+  '/demo/messages': typeof DemoMessagesRoute
+  '/demo/reservations': typeof DemoReservationsRoute
+  '/demo/settings': typeof DemoSettingsRoute
+  '/media/$': typeof MediaSplatRoute
+  '/sign-in/otp': typeof SignInOtpRoute
+  '/dashboard/': typeof DashboardIndexRoute
+  '/demo/': typeof DemoIndexRoute
+  '/reservation/$token': typeof SiteReservationTokenRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute;
-  '/dashboard': typeof DashboardRoute;
-  '/forgot-password': typeof ForgotPasswordRoute;
-  '/robots.txt': typeof RobotsDottxtRoute;
-  '/sign-in': typeof SignInRoute;
-  '/sign-up': typeof SignUpRoute;
-  '/sitemap.xml': typeof SitemapDotxmlRoute;
-  '/sign-in/otp': typeof SignInOtpRoute;
-  '/api/auth/$': typeof ApiAuthSplatRoute;
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/no-access': typeof NoAccessRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sign-in': typeof SignInRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/menu': typeof SiteMenuRoute
+  '/visit': typeof SiteVisitRoute
+  '/weekend-box': typeof SiteWeekendBoxRoute
+  '/dashboard/menu': typeof DashboardMenuRoute
+  '/dashboard/messages': typeof DashboardMessagesRoute
+  '/dashboard/reservations': typeof DashboardReservationsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/demo/menu': typeof DemoMenuRoute
+  '/demo/messages': typeof DemoMessagesRoute
+  '/demo/reservations': typeof DemoReservationsRoute
+  '/demo/settings': typeof DemoSettingsRoute
+  '/media/$': typeof MediaSplatRoute
+  '/sign-in/otp': typeof SignInOtpRoute
+  '/': typeof SiteIndexRoute
+  '/dashboard': typeof DashboardIndexRoute
+  '/demo': typeof DemoIndexRoute
+  '/reservation/$token': typeof SiteReservationTokenRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport;
-  '/': typeof IndexRoute;
-  '/dashboard': typeof DashboardRoute;
-  '/forgot-password': typeof ForgotPasswordRoute;
-  '/robots.txt': typeof RobotsDottxtRoute;
-  '/sign-in': typeof SignInRoute;
-  '/sign-up': typeof SignUpRoute;
-  '/sitemap.xml': typeof SitemapDotxmlRoute;
-  '/sign-in_/otp': typeof SignInOtpRoute;
-  '/api/auth/$': typeof ApiAuthSplatRoute;
+  __root__: typeof rootRouteImport
+  '/_site': typeof SiteRouteWithChildren
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/demo': typeof DemoRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/no-access': typeof NoAccessRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sign-in': typeof SignInRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/_site/menu': typeof SiteMenuRoute
+  '/_site/visit': typeof SiteVisitRoute
+  '/_site/weekend-box': typeof SiteWeekendBoxRoute
+  '/dashboard/menu': typeof DashboardMenuRoute
+  '/dashboard/messages': typeof DashboardMessagesRoute
+  '/dashboard/reservations': typeof DashboardReservationsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/demo/menu': typeof DemoMenuRoute
+  '/demo/messages': typeof DemoMessagesRoute
+  '/demo/reservations': typeof DemoReservationsRoute
+  '/demo/settings': typeof DemoSettingsRoute
+  '/media/$': typeof MediaSplatRoute
+  '/sign-in_/otp': typeof SignInOtpRoute
+  '/_site/': typeof SiteIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
+  '/demo/': typeof DemoIndexRoute
+  '/_site/reservation/$token': typeof SiteReservationTokenRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
+  fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/dashboard'
+    | '/demo'
     | '/forgot-password'
+    | '/no-access'
     | '/robots.txt'
     | '/sign-in'
-    | '/sign-up'
     | '/sitemap.xml'
+    | '/menu'
+    | '/visit'
+    | '/weekend-box'
+    | '/dashboard/menu'
+    | '/dashboard/messages'
+    | '/dashboard/reservations'
+    | '/dashboard/settings'
+    | '/demo/menu'
+    | '/demo/messages'
+    | '/demo/reservations'
+    | '/demo/settings'
+    | '/media/$'
     | '/sign-in/otp'
-    | '/api/auth/$';
-  fileRoutesByTo: FileRoutesByTo;
+    | '/dashboard/'
+    | '/demo/'
+    | '/reservation/$token'
+    | '/api/auth/$'
+  fileRoutesByTo: FileRoutesByTo
   to:
+    | '/forgot-password'
+    | '/no-access'
+    | '/robots.txt'
+    | '/sign-in'
+    | '/sitemap.xml'
+    | '/menu'
+    | '/visit'
+    | '/weekend-box'
+    | '/dashboard/menu'
+    | '/dashboard/messages'
+    | '/dashboard/reservations'
+    | '/dashboard/settings'
+    | '/demo/menu'
+    | '/demo/messages'
+    | '/demo/reservations'
+    | '/demo/settings'
+    | '/media/$'
+    | '/sign-in/otp'
     | '/'
     | '/dashboard'
-    | '/forgot-password'
-    | '/robots.txt'
-    | '/sign-in'
-    | '/sign-up'
-    | '/sitemap.xml'
-    | '/sign-in/otp'
-    | '/api/auth/$';
+    | '/demo'
+    | '/reservation/$token'
+    | '/api/auth/$'
   id:
     | '__root__'
-    | '/'
+    | '/_site'
     | '/dashboard'
+    | '/demo'
     | '/forgot-password'
+    | '/no-access'
     | '/robots.txt'
     | '/sign-in'
-    | '/sign-up'
     | '/sitemap.xml'
+    | '/_site/menu'
+    | '/_site/visit'
+    | '/_site/weekend-box'
+    | '/dashboard/menu'
+    | '/dashboard/messages'
+    | '/dashboard/reservations'
+    | '/dashboard/settings'
+    | '/demo/menu'
+    | '/demo/messages'
+    | '/demo/reservations'
+    | '/demo/settings'
+    | '/media/$'
     | '/sign-in_/otp'
-    | '/api/auth/$';
-  fileRoutesById: FileRoutesById;
+    | '/_site/'
+    | '/dashboard/'
+    | '/demo/'
+    | '/_site/reservation/$token'
+    | '/api/auth/$'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  DashboardRoute: typeof DashboardRoute;
-  ForgotPasswordRoute: typeof ForgotPasswordRoute;
-  RobotsDottxtRoute: typeof RobotsDottxtRoute;
-  SignInRoute: typeof SignInRoute;
-  SignUpRoute: typeof SignUpRoute;
-  SitemapDotxmlRoute: typeof SitemapDotxmlRoute;
-  SignInOtpRoute: typeof SignInOtpRoute;
-  ApiAuthSplatRoute: typeof ApiAuthSplatRoute;
+  SiteRoute: typeof SiteRouteWithChildren
+  DashboardRoute: typeof DashboardRouteWithChildren
+  DemoRoute: typeof DemoRouteWithChildren
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  NoAccessRoute: typeof NoAccessRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SignInRoute: typeof SignInRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  MediaSplatRoute: typeof MediaSplatRoute
+  SignInOtpRoute: typeof SignInOtpRoute
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/';
-      path: '/';
-      fullPath: '/';
-      preLoaderRoute: typeof IndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+    '/_site': {
+      id: '/_site'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof SiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
-      id: '/dashboard';
-      path: '/dashboard';
-      fullPath: '/dashboard';
-      preLoaderRoute: typeof DashboardRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/forgot-password': {
-      id: '/forgot-password';
-      path: '/forgot-password';
-      fullPath: '/forgot-password';
-      preLoaderRoute: typeof ForgotPasswordRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/no-access': {
+      id: '/no-access'
+      path: '/no-access'
+      fullPath: '/no-access'
+      preLoaderRoute: typeof NoAccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/robots.txt': {
-      id: '/robots.txt';
-      path: '/robots.txt';
-      fullPath: '/robots.txt';
-      preLoaderRoute: typeof RobotsDottxtRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sign-in': {
-      id: '/sign-in';
-      path: '/sign-in';
-      fullPath: '/sign-in';
-      preLoaderRoute: typeof SignInRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    '/sign-up': {
-      id: '/sign-up';
-      path: '/sign-up';
-      fullPath: '/sign-up';
-      preLoaderRoute: typeof SignUpRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof SignInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
-      id: '/sitemap.xml';
-      path: '/sitemap.xml';
-      fullPath: '/sitemap.xml';
-      preLoaderRoute: typeof SitemapDotxmlRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_site/': {
+      id: '/_site/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof SiteIndexRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/menu': {
+      id: '/_site/menu'
+      path: '/menu'
+      fullPath: '/menu'
+      preLoaderRoute: typeof SiteMenuRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/visit': {
+      id: '/_site/visit'
+      path: '/visit'
+      fullPath: '/visit'
+      preLoaderRoute: typeof SiteVisitRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/weekend-box': {
+      id: '/_site/weekend-box'
+      path: '/weekend-box'
+      fullPath: '/weekend-box'
+      preLoaderRoute: typeof SiteWeekendBoxRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/menu': {
+      id: '/dashboard/menu'
+      path: '/menu'
+      fullPath: '/dashboard/menu'
+      preLoaderRoute: typeof DashboardMenuRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/messages': {
+      id: '/dashboard/messages'
+      path: '/messages'
+      fullPath: '/dashboard/messages'
+      preLoaderRoute: typeof DashboardMessagesRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/reservations': {
+      id: '/dashboard/reservations'
+      path: '/reservations'
+      fullPath: '/dashboard/reservations'
+      preLoaderRoute: typeof DashboardReservationsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/demo/': {
+      id: '/demo/'
+      path: '/'
+      fullPath: '/demo/'
+      preLoaderRoute: typeof DemoIndexRouteImport
+      parentRoute: typeof DemoRoute
+    }
+    '/demo/menu': {
+      id: '/demo/menu'
+      path: '/menu'
+      fullPath: '/demo/menu'
+      preLoaderRoute: typeof DemoMenuRouteImport
+      parentRoute: typeof DemoRoute
+    }
+    '/demo/messages': {
+      id: '/demo/messages'
+      path: '/messages'
+      fullPath: '/demo/messages'
+      preLoaderRoute: typeof DemoMessagesRouteImport
+      parentRoute: typeof DemoRoute
+    }
+    '/demo/reservations': {
+      id: '/demo/reservations'
+      path: '/reservations'
+      fullPath: '/demo/reservations'
+      preLoaderRoute: typeof DemoReservationsRouteImport
+      parentRoute: typeof DemoRoute
+    }
+    '/demo/settings': {
+      id: '/demo/settings'
+      path: '/settings'
+      fullPath: '/demo/settings'
+      preLoaderRoute: typeof DemoSettingsRouteImport
+      parentRoute: typeof DemoRoute
+    }
+    '/media/$': {
+      id: '/media/$'
+      path: '/media/$'
+      fullPath: '/media/$'
+      preLoaderRoute: typeof MediaSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sign-in_/otp': {
-      id: '/sign-in_/otp';
-      path: '/sign-in/otp';
-      fullPath: '/sign-in/otp';
-      preLoaderRoute: typeof SignInOtpRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/sign-in_/otp'
+      path: '/sign-in/otp'
+      fullPath: '/sign-in/otp'
+      preLoaderRoute: typeof SignInOtpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_site/reservation/$token': {
+      id: '/_site/reservation/$token'
+      path: '/reservation/$token'
+      fullPath: '/reservation/$token'
+      preLoaderRoute: typeof SiteReservationTokenRouteImport
+      parentRoute: typeof SiteRoute
+    }
     '/api/auth/$': {
-      id: '/api/auth/$';
-      path: '/api/auth/$';
-      fullPath: '/api/auth/$';
-      preLoaderRoute: typeof ApiAuthSplatRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface SiteRouteChildren {
+  SiteMenuRoute: typeof SiteMenuRoute
+  SiteVisitRoute: typeof SiteVisitRoute
+  SiteWeekendBoxRoute: typeof SiteWeekendBoxRoute
+  SiteIndexRoute: typeof SiteIndexRoute
+  SiteReservationTokenRoute: typeof SiteReservationTokenRoute
+}
+
+const SiteRouteChildren: SiteRouteChildren = {
+  SiteMenuRoute: SiteMenuRoute,
+  SiteVisitRoute: SiteVisitRoute,
+  SiteWeekendBoxRoute: SiteWeekendBoxRoute,
+  SiteIndexRoute: SiteIndexRoute,
+  SiteReservationTokenRoute: SiteReservationTokenRoute,
+}
+
+const SiteRouteWithChildren = SiteRoute._addFileChildren(SiteRouteChildren)
+
+interface DashboardRouteChildren {
+  DashboardMenuRoute: typeof DashboardMenuRoute
+  DashboardMessagesRoute: typeof DashboardMessagesRoute
+  DashboardReservationsRoute: typeof DashboardReservationsRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardMenuRoute: DashboardMenuRoute,
+  DashboardMessagesRoute: DashboardMessagesRoute,
+  DashboardReservationsRoute: DashboardReservationsRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
+interface DemoRouteChildren {
+  DemoMenuRoute: typeof DemoMenuRoute
+  DemoMessagesRoute: typeof DemoMessagesRoute
+  DemoReservationsRoute: typeof DemoReservationsRoute
+  DemoSettingsRoute: typeof DemoSettingsRoute
+  DemoIndexRoute: typeof DemoIndexRoute
+}
+
+const DemoRouteChildren: DemoRouteChildren = {
+  DemoMenuRoute: DemoMenuRoute,
+  DemoMessagesRoute: DemoMessagesRoute,
+  DemoReservationsRoute: DemoReservationsRoute,
+  DemoSettingsRoute: DemoSettingsRoute,
+  DemoIndexRoute: DemoIndexRoute,
+}
+
+const DemoRouteWithChildren = DemoRoute._addFileChildren(DemoRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  DashboardRoute: DashboardRoute,
+  SiteRoute: SiteRouteWithChildren,
+  DashboardRoute: DashboardRouteWithChildren,
+  DemoRoute: DemoRouteWithChildren,
   ForgotPasswordRoute: ForgotPasswordRoute,
+  NoAccessRoute: NoAccessRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SignInRoute: SignInRoute,
-  SignUpRoute: SignUpRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  MediaSplatRoute: MediaSplatRoute,
   SignInOtpRoute: SignInOtpRoute,
-  ApiAuthSplatRoute: ApiAuthSplatRoute
-};
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
 
-import type { getRouter } from './router.tsx';
-import type { createStart } from '@tanstack/react-start';
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
 declare module '@tanstack/react-start' {
   interface Register {
-    ssr: true;
-    router: Awaited<ReturnType<typeof getRouter>>;
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
   }
 }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useMutation } from '@tanstack/react-query';
 import { authClient } from '~/lib/auth-client';
+import { AuthFrame } from '~/components/auth-frame';
 import { Button } from '~/components/ui/button';
 import {
   Card,
@@ -20,7 +21,7 @@ import {
 import { seo } from '~/utils/seo';
 
 export const Route = createFileRoute('/forgot-password')({
-  head: () => seo({ title: 'Reset your password', noindex: true }),
+  head: () => seo({ title: 'Reset your password | Bloom Bakery', noindex: true }),
   component: ForgotPasswordPage
 });
 
@@ -53,7 +54,7 @@ function ForgotPasswordPage() {
 
   if (resetPassword.isSuccess) {
     return (
-      <div className='flex min-h-svh items-center justify-center p-4'>
+      <AuthFrame>
         <Card className='w-full max-w-sm'>
           <CardHeader>
             <CardTitle>Password reset</CardTitle>
@@ -67,12 +68,12 @@ function ForgotPasswordPage() {
             </Button>
           </CardContent>
         </Card>
-      </div>
+      </AuthFrame>
     );
   }
 
   return (
-    <div className='flex min-h-svh items-center justify-center p-4'>
+    <AuthFrame>
       <Card className='w-full max-w-sm'>
         <CardHeader>
           <CardTitle>Reset your password</CardTitle>
@@ -203,6 +204,6 @@ function ForgotPasswordPage() {
           </Button>
         </CardContent>
       </Card>
-    </div>
+    </AuthFrame>
   );
 }

@@ -1,5 +1,6 @@
 import { createIsomorphicFn } from '@tanstack/react-start';
 import { getRequestUrl } from '@tanstack/react-start/server';
+import { business } from '~/business.config';
 
 type Site = {
   name: string;
@@ -23,16 +24,16 @@ type Site = {
 
 /** What search engines and link previews read about this site. */
 export const site: Site = {
-  name: 'My App',
-  description: 'Built with Layerwise',
+  name: business.name,
+  description: business.description,
   url: '',
-  image: '',
-  imageAlt: '',
+  image: '/og-image.png',
+  imageAlt: `${business.name}: ${business.headline}`,
   googleSiteVerification: ''
 };
 
 /** Public pages in `/sitemap.xml`. Add every page search engines should find. */
-export const sitemapPaths: string[] = ['/'];
+export const sitemapPaths: string[] = ['/', '/menu', '/weekend-box', '/visit'];
 
 const requestOrigin = createIsomorphicFn()
   .server(() => getRequestUrl().origin)
