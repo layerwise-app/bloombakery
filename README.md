@@ -1,10 +1,18 @@
+<a href="https://layerwise.app"><picture><source media="(prefers-color-scheme: dark)" srcset="https://layerwise.app/powered-by-dark.png"><img src="https://layerwise.app/powered-by.png" alt="Powered by Layerwise" width="174" height="28"></picture></a>
+
 # Bloom Bakery
 
-<a href="https://layerwise.app"><img src="https://layerwise.app/powered-by.png" alt="Powered by Layerwise" width="320" /></a>
+Bloom Bakery is a complete website for a neighborhood bakery or café that
+sells over the counter and takes pickup reservations. Visitors can see
+today's hours and whether the shop is open, browse the menu of breads,
+pastries, and coffee, reserve a weekend box for a pickup time and pay in store,
+and find the shop or send a message from the Visit page. Owners get a
+dashboard for reservations, messages, the menu, and settings. Everything about
+the business is fictional and easy to replace. See the live demo at
+https://bloombakery.layerwise.site/.
 
-A complete website for a neighborhood bakery: a home page, a menu, weekend box
-reservations with pickup capacity, a visit page with a contact form, and an
-owner dashboard. Everything about the business is fictional and easy to replace.
+It was built with [Layerwise](https://layerwise.app), and you can open it in
+Layerwise to make your own version.
 
 ## Make it yours
 
@@ -19,8 +27,9 @@ and the illustrations all read from it.
    form notifications aren't sent, because the sample addresses can't receive
    mail. Messages are still saved.
 3. Publish, go to `/sign-in`, and sign in with the code emailed to your address.
-4. In the dashboard, edit the menu, upload your photos, and set the weekend box.
-5. Set `demoDashboard: false` to remove the public demo.
+4. In the dashboard, edit the menu, upload your photos, and set the weekend box
+   under Settings.
+5. Set `demoDashboard: false` to remove the public demo at `/demo`.
 
 The share image (`public/og-image.png`) and icons in `public/` are ordinary
 files. Replace them when you change the name or colors. `site.url` in
@@ -28,12 +37,29 @@ files. Replace them when you change the name or colors. `site.url` in
 
 ### What lives where
 
-| What                                             | Where                                                |
-| ------------------------------------------------ | ---------------------------------------------------- |
-| Name, contact, colors, social links, owner list  | `src/business.config.ts`                             |
-| Hours, pickup times, and capacity                | Starts in the config. Once saved in the dashboard, the saved values win |
-| Menu, quotes, and weekend box                    | The database, seeded by a migration and edited in the dashboard (quotes in the `quotes` table) |
-| Menu photos                                      | Layerwise Storage, under `menu/`                     |
+| What                                            | Where                                                                                     |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Name, contact, colors, social links, owner list | `src/business.config.ts`                                                                  |
+| Story, pull quote, and morning timeline         | `story` in `src/business.config.ts`                                                       |
+| Hours, pickup times, and capacity               | Start in the config. Once saved in the dashboard, the saved values win                    |
+| Menu and weekend box                            | The database, seeded by a migration and edited in the dashboard                           |
+| Customer quotes on the home page                | The `quotes` table in the database. There's no dashboard screen for them                  |
+| Menu photos                                     | Layerwise Storage, under `menu/`                                                          |
+| Headings and page copy                          | The page files in `src/routes/_site/`                                                     |
+| Fonts and shared styles                         | `src/styles/app.css` (Fraunces, Instrument Sans, and DM Mono)                             |
+
+### Adding a menu item
+
+Sign in, open **Menu** in the dashboard, and choose **Add item**. Give it a
+name, price, category (Breads, Pastries, or Coffee), description, and dietary
+labels, then upload a photo or pick one of the built-in illustrations. Turn on
+**Feature on home** to show it on the home page, or **Sold out today** to mark
+it sold out.
+
+`src/lib/sample-content.ts` holds the starting menu, quotes, and weekend box.
+The seed migration was written from it and the demo dashboard displays it, but
+after the first publish the database is the source of truth, so editing that
+file doesn't change the live menu.
 
 ## How it works
 
@@ -55,28 +81,33 @@ files. Replace them when you change the name or colors. `site.url` in
 
 ## Commands
 
+Layerwise runs the preview server for you, so these are mostly for checks and
+database changes.
+
 ```bash
-pnpm dev
-pnpm check-types
-pnpm test
-pnpm build
-pnpm auth:generate
-pnpm db:generate --name <migration_name>
-pnpm db:migrate
-pnpm cf-typegen
-pnpm release
+pnpm dev                                  # start a local dev server outside Layerwise
+pnpm check-types                          # TypeScript check
+pnpm test                                 # unit, capacity, and rate limit tests
+pnpm build                                # type check, then production build
+pnpm db:generate --name <migration_name>  # create a migration after editing src/db/schema.ts
+pnpm db:migrate                           # apply migrations to the local D1 database
+pnpm auth:generate --yes                  # regenerate Better Auth tables after adding a plugin
+pnpm cf-typegen                           # regenerate worker-configuration.d.ts
 ```
 
 `db:migrate` applies generated Drizzle migrations to the local D1 database.
 Layerwise applies the same migrations to the project's production D1 database
 during publishing, including the seed in `drizzle/*_seed_menu_and_content`.
 `pnpm test` runs unit tests, plus capacity and rate limit tests against a
-temporary local D1 database with the real migrations applied.
+temporary local D1 database with the real migrations applied. After
+`auth:generate`, copy only the new tables and columns from the generated
+`auth-schema.ts` into `src/db/schema.ts`, then delete that file.
 
 ## Important files
 
 - `src/business.config.ts`: everything about the business
 - `src/routes/_site/`: the public pages
+- `src/components/site/chrome.tsx`: the header, footer, and mobile action bar
 - `src/routes/dashboard/` and `src/routes/demo/`: the owner and demo dashboards,
   which share `src/components/dashboard/`
 - `src/lib/public.functions.ts` and `src/lib/owner.functions.ts`: server functions
@@ -100,7 +131,7 @@ Each route sets its head with `seo({ title, description, path })`, which adds
 the canonical URL and the link-preview tags that Google, Instagram, iMessage,
 and WhatsApp read. The home and Visit pages include `Bakery` structured data
 built from the config. `/robots.txt` and `/sitemap.xml` are generated from
-`src/lib/site.ts`.
+`src/lib/site.ts`; add new public pages to `sitemapPaths` there.
 
 ## Email
 

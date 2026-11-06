@@ -252,9 +252,26 @@ export function SiteFooter({ info }: { info: SiteInfo }) {
             </ul>
           </div>
         </div>
-        <p className='label mt-12 opacity-75'>
-          Since {business.established} · {business.neighborhood}
-        </p>
+        <div className='mt-12 flex flex-wrap items-center justify-between gap-x-8 gap-y-5'>
+          <p className='label opacity-75'>
+            Since {business.established} · {business.neighborhood}
+          </p>
+          <a
+            href='https://layerwise.app'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='shrink-0'
+          >
+            <img
+              src='https://layerwise.app/powered-by-dark.png'
+              alt='Powered by Layerwise'
+              width={174}
+              height={28}
+              loading='lazy'
+              className='block h-[28px] w-[174px]'
+            />
+          </a>
+        </div>
       </div>
     </footer>
   );
